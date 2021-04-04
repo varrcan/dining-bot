@@ -28,16 +28,27 @@ func Handler() (string, error) {
 		"Готовность полчаса",
 		"Идем в половину",
 		"Го в половину",
+		"Ну что, го в половину",
+		"Выдвигаемся в половину",
+		"В половину обед",
+		"В 12:30 на обед",
+		"Обед в 12:30 или че?",
+		"12:30 - обед!",
 	}
 
 	run := []string{
 		"го!",
 		"Go!",
+		"Гоу гоу гоу",
 		"Поiхали!",
 		"Жратикоо",
 		"На обед!",
 		"Идём?",
 		"Пора обедать",
+		"Ну что, гоу?",
+		"Время хавать, пошли",
+		"Кушать го",
+		"Го в столовку",
 	}
 
 	if (int(weekday) != 0 && int(weekday) != 6) && !russia.IsHoliday(now) {
@@ -53,7 +64,7 @@ func Handler() (string, error) {
 			text = getRandom(run)
 		}
 
-		msg := tgbotapi.NewMessage(-1001287472972, text)
+		msg := tgbotapi.NewMessage(-1001287472972, text) // 582130977
 
 		bot.Send(msg)
 	}
@@ -62,8 +73,8 @@ func Handler() (string, error) {
 }
 
 func getRandom(in []string) string {
-	randomIndex := rand.Intn(len(in))
-	pick := in[randomIndex]
+	rand.Seed(time.Now().Unix())
+	message := in[rand.Intn(len(in))]
 
-	return pick
+	return message
 }
