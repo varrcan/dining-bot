@@ -66,10 +66,31 @@ func Handler() (string, error) {
 
 		msg := tgbotapi.NewMessage(-1001287472972, text) // 582130977
 
-		bot.Send(msg)
+		if isFirstRun {
+			poll := newPoll(-1001287472972, "Кто идет?", "Я иду", "Я остаюсь голодным")
+			_, err = bot.Send(poll)
+		}
+
+		_, err = bot.Send(msg)
+
+		if err != nil {
+			fmt.Println(err)
+			return "", err
+		}
 	}
 
 	return "true", nil
+}
+
+func newPoll(chatID int64, question string, options ...string) tgbotapi.SendPollConfig {
+	return tgbotapi.SendPollConfig{
+		BaseChat: tgbotapi.BaseChat{
+			ChatID: chatID,
+		},
+		Question:    question,
+		Options:     options,
+		IsAnonymous: false,
+	}
 }
 
 func getRandom(in []string) string {
