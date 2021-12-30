@@ -18,9 +18,7 @@ func main() {
 func Handler() (string, error) {
 	now := time.Now()
 	weekday := now.Weekday()
-	isFirstRun := now.Format("15:04") == "12:00"
-
-	fmt.Println(isFirstRun)
+	isFirstRun := now.Format("15:04") == "09:00"
 
 	promp := []string{
 		"В половину го",
