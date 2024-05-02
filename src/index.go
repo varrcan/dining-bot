@@ -65,7 +65,7 @@ func Handler() (string, error) {
 		msg := tgbotapi.NewMessage(-1001287472972, text) // 582130977
 
 		if isFirstRun {
-			poll := newPoll(-1001287472972, "Кто идет?", "Я иду", "Я остаюсь голодным")
+			poll := newPoll(-1001287472972, "Кто идет в За100лье?", "Я иду", "Я остаюсь голодным")
 			_, err = bot.Send(poll)
 		}
 
